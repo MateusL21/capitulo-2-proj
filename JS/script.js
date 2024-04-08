@@ -83,7 +83,9 @@ function addNewRow(prod){
     newRow.insertCell().appendChild(nameNode);
 
     var descriptionNode = document.createTextNode(prod.description);
-    newRow.insertCell().appendChild(descriptionNode);
+    var cell = newRow.insertCell();
+    cell.className='d-none d-md-table-cell';
+    cell.appendChild(descriptionNode);
 
     var formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency' ,
@@ -101,14 +103,16 @@ function addNewRow(prod){
 //insert product options
     var options='';
     if(prod.promotion){
-        options = '<span class="badge text-bg-success me-1">P</span>'
+        options = "<span class='badge text-bg-success me-1'>P</span>"
 
     }
 
     if(prod.new){
-        options += '<span class="badge text-bg-primary">L</span>'
+        options += "<span class='badge text-bg-primary'>L</span>"
     }
 
-    newRow.insertCell().innerHTML = options;
+    cell = newRow.insertCell();
+    cell.className="d-none d-md-table-cell";
+    cell.innerHTML = options;
 
 }
